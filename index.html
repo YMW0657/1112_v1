@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Annotation</title>
+<style>
+ body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 60px;
+    padding-left: 40px; 
+    padding-right: 40px; 
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0056b3;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+button:focus {
+    background-color: #003d82;
+}
+
+input[type="text"],
+input[type="file"] {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    width: 100%; 
+    max-width: 200px; 
+    box-sizing: border-box; 
+}
+
+#labels-container {
+    position: fixed;  
+    top: 0;          
+    left: 0;          
+    width: 100%;      /* 容器宽度 */
+    background: white; /* 背景颜色，可以根据需要调整 */
+    border-bottom: 1px solid #ddd; /* 底部边框，可以根据需要调整 */
+    padding: 10px 20px; /* 内边距，可以根据需要调整 */
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2); /* 阴影效果，可以根据需要调整 */
+    z-index: 1000;     /* 确保它在内容上方 */
+}
+
+.label-btn {
+    background-color: #e7e7e7;
+    color: #333;
+    margin-right: 10px;
+}
+
+.delete-label-btn {
+    padding: 5px 8px;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 50%; /* Circular shape */
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.label-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    table-layout: auto; /* 使用固定布局，但允许第三列自动扩展 */
+}
+
+/* 设置第一列和第二列的宽度 */
+th:first-child, td:first-child,
+th:nth-child(1), td:nth-child(1) {
+    width: 5%; /* 设置第一列和第二列的宽度为15%，可以根据需要调整 */
+}
+
+
+
+/* 单元格通用样式 */
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+    word-wrap: break-word; /* 允许内容换行 */
+    white-space: normal; /* 正常处理空白符，允许换行 */
+}
+
+/* 用于处理小屏幕设备上的表格布局 */
+@media screen and (max-width: 768px) {
+    .table, th, td {
+        width: auto; /* 在小屏幕上，单元格宽度根据内容自动调整 */
+        padding: 10px;
+        word-wrap: break-word; /* 确保小屏幕上内容也可以换行 */
+        white-space: normal;
+    }
+}
+
+th {
+    background-color: #0056b3;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+#confirm-button, #download-button {
+    display: block; /* Adjust as necessary */
+    margin: 20px 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+</style>
+</head>
+<body>
+    <h1>Annotation Tool</h1>
+    <p>Please upload dialogue file.</p>
+    <input type="file" id="file-input" accept=".xlsx, .xls" />
+    <button id="confirm-button">Show content</button>
+    
+
+    <!-- 自定义标签名称输入框和按钮 -->
+    <input type="text" id="custom-label-name" placeholder="Enter custom label name" />
+    
+    <!-- Somewhere within your body tag, after the labels-container div -->
+    
+
+
+    <!-- 用于显示标签的容器 -->
+    <div id="labels-container"></div>
+
+    <!-- 清除和取消高亮的按钮 -->
+    <div id="label-buttons">
+        <button id="add-custom-label">Add Label</button>
+        <button id="clear-highlights" style="background-color:#0056b3;">Clear all annotation</button>
+        <button id="delete-highlight" style="background-color:#0056b3;">Cancel annotation</button>
+    </div>
+
+    
+
+ 
+    <div id="dialogue-content">
+        <!-- 对话内容将在这里显示 -->
+    </div>
+    <button id="download-button" style="display:none;">Download</button>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
